@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -465,7 +465,7 @@ function predict(withWind){
     if(oz>fz&&z<=fz){var t=(oz-fz)/(oz-z);return new V(ox+(x-ox)*t,oy+(y-oy)*t,fz)}if(y<0)return null}
   return null}
 function sway(t){
-  var a=S.drawing?(holdT<.9?.005:holdT<steadyEnd?.0017:Math.min(.013,.0017+(holdT-steadyEnd)*.004)):.0012;a*=swayMul;if(S.holding)a*=.22;
+  var a=S.drawing?(holdT<.9?.005:.0017):.0012;a*=swayMul;if(S.holding)a*=.22;
   var pulse=Math.pow(Math.max(0,Math.sin(t*7.5)),8)*.35;
   return[a*(Math.sin(t*1.7)+.6*Math.sin(t*4.1+1.3)+.25*Math.sin(t*9)),a*(Math.cos(t*1.3)+.5*Math.sin(t*3.7+.4)+.7*Math.sin(t*1.1)+pulse)]}
 
@@ -578,12 +578,12 @@ function update(dt){
   S.stuck.forEach(function(s){if(s.age<2){s.age+=dt;var a=s.amp*Math.sin(s.age*55)*Math.exp(-s.age*5);s.m.quaternion.copy(s.q0).multiply(new THREE.Quaternion().setFromAxisAngle(new V(1,0,0),a))}});
   var f=1-Math.exp(-camK*dt);camera.position.lerp(wantPos,f);look.lerp(wantLook,f);
   camera.fov+=(fovT-camera.fov)*(1-Math.exp(-12*dt));camera.updateProjectionMatrix();camera.lookAt(look);camera.updateMatrixWorld();
-  var steady=S.drawing&&holdT>=.9&&holdT<steadyEnd,tired=S.drawing&&holdT>=steadyEnd;
+  var steady=S.drawing&&holdT>=.9;
   $('bot').style.opacity=aim?1:0;$('bar').style.width=(S.pull*100)+'%';
-  $('bar').style.background=tired?'var(--hot)':S.pull>=1?'var(--ok)':S.pull>=.7?'var(--amber)':'#fff';$('stam').style.width=(S.stam*100)+'%';
+  $('bar').style.background=S.pull>=1?'var(--ok)':S.pull>=.7?'var(--amber)':'#fff';$('stam').style.width=(S.stam*100)+'%';
   S.hintT=Math.max(0,S.hintT-dt);
-  $('hint').textContent=S.hintT>0?S.hintTxt:!S.drawing?'Press and hold to draw':S.pull<.7?'Keep drawing…':S.pull<1?'Almost at full draw':tired?'Arms tiring: release now':steady?'Steady: release in the green':'Full draw';
-  $('hint').style.color=tired?'var(--hot)':steady?'var(--ok)':'#fff';
+  $('hint').textContent=S.hintT>0?S.hintTxt:!S.drawing?'Press and hold to draw':S.pull<.7?'Keep drawing…':S.pull<1?'Almost at full draw':steady?'Steady: release in the green':'Full draw';
+  $('hint').style.color=steady?'var(--ok)':'#fff';
   hudT+=dt;if(hudT>.1){hudT=0;
     $('ws').textContent=w.s.toFixed(1);$('wd').textContent=windWord(w.s);$('wa').style.transform='rotate('+Math.atan2(cross,head)*180/Math.PI+'deg)';
     var sp=launchSpeed(S.pull);$('t-d').textContent=Math.round(S.pull*100);$('t-s').textContent=S.pull>0?sp.toFixed(0):'0';
