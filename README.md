@@ -6,13 +6,32 @@
 
 ---
 
-## 📸 Overview
+## 📸 Screenshots
 
-Longbow Range 3D puts you on a outdoor archery range rendered in real-time 3D using Three.js. Every arrow obeys ballistic physics — gravity, quadratic air drag, wind drift, and archer's paradox wobble. The sky matches your actual local time of day. Land ten arrows, beat your best score, and climb from Rookie to Master.
+<p align="center">
+  <img src="assets/main_ground.png" alt="Full range view with recurve bow at night" width="100%"/>
+  <em>Night sky, recurve bow drawn, full 3D range with trees, grass tufts and anemometers</em>
+</p>
+
+<p align="center">
+  <img src="assets/image.png" alt="Scope view at full draw with combo active" width="100%"/>
+  <em>Scope zoomed in at full draw — wind hold marker, drop ladder, ×3 combo active, golden-hour sky</em>
+</p>
+
+<p align="center">
+  <img src="assets/image2.png" alt="Arrow hit result close-up" width="100%"/>
+  <em>+9 ring hit — impact position, flight time, speed and energy shown on result screen</em>
+</p>
 
 ---
 
-## 🎮 How to Play
+## 🎮 Overview
+
+Longbow Range 3D puts you on an outdoor archery range rendered in real-time 3D using Three.js. Every arrow obeys ballistic physics — gravity, quadratic air drag, wind drift, and archer's paradox wobble. The sky matches your actual local time of day. Land ten arrows, beat your best score, and climb from Rookie to Master.
+
+---
+
+## 🕹️ How to Play
 
 | Step | Action |
 |------|--------|
@@ -191,7 +210,12 @@ No npm install, no bundler, no build step.
 
 ```
 Archery_Game_Deployed/
-└── index.html   ← entire game: HTML + CSS + JS (single file)
+├── assets/
+│   ├── image.png        ← Scope view screenshot
+│   ├── image2.png       ← Hit result screenshot
+│   └── main_ground.png  ← Full range screenshot
+├── index.html           ← Entire game (HTML + CSS + JS)
+└── README.md
 ```
 
 ---
@@ -205,12 +229,6 @@ Archery_Game_Deployed/
 | B | 50 – 69 |
 | C | 30 – 49 |
 | D | 0 – 29 |
-
----
-
-## 📄 License
-
-MIT — do whatever you want with it.
 
 ---
 
